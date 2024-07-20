@@ -1,5 +1,8 @@
 const $hero = document.getElementById('hero');
 const click__element__wrapper = document.querySelector('.click__element__wrapper');
+const $score = document.getElementById('score');
+let scoreCount = 0;
+const lizzardImgPath = './assets/lizzard.png';
 
 $hero.addEventListener('click', (event) => {
     const DEG = 40;
@@ -7,8 +10,6 @@ $hero.addEventListener('click', (event) => {
     const {
         height,
         width,
-        x,
-        y,
         top,
         left,
     } = $hero.getBoundingClientRect();
@@ -34,6 +35,14 @@ $hero.addEventListener('click', (event) => {
     $plus_one.style.top = `${event.clientY - top}px`;
 
     click__element__wrapper.appendChild($plus_one);
+
+    scoreCount += 1;
+
+    $score.innerText = scoreCount;
+
+    if(scoreCount > 5) {
+        $hero.src = lizzardImgPath
+    }
 
     setTimeout(() => {
         $plus_one.remove()
